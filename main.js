@@ -27,7 +27,7 @@ class objectPlay {
                 color: '#FFF4E0',
             }
          ]
-        this.winnerTable = [];
+        // this.winnerTable = [];
         this.write = true;
         this.counter = 0;
     }
@@ -56,20 +56,6 @@ class objectPlay {
 
         return resultArr;
     }
-    
-
-   
-
-    showWinner(){   
-        if(this.winData[this.coounter] === "OK"){
-            this.winnerTable.push("OK");
-        }   
-        this.counter++;
-        return this.winnerTable;
-    }
-
-    
-
     updateResultStats(element,counter){ // aktualizacja wyników danej partii
         element.textContent = counter;
     }
@@ -135,14 +121,16 @@ class Game {
                                     if(this.X.rule()=='Win'){
                                         this.X.winData.push('OK');
                                         this.O.winData.push('-');
-                                        this.X.showWinner();
+                                        // this.X.showWinner();
+                                        this.X.counter++;
                                         this.X.updateResultStats(document.querySelector('.resultX'),this.X.counter);
                                         
                                        
                                     } else if(this.O.rule()=='Win'){
                                         this.O.winData.push('OK');
                                         this.X.winData.push('-');
-                                        this.O.showWinner();
+                                        // this.O.showWinner();
+                                        this.O.counter++;
                                         this.O.updateResultStats(document.querySelector('.resultO'),this.O.counter);
                                     }
                                     
@@ -177,7 +165,8 @@ class Game {
                                     
                                         this.X.winData.push('OK');
                                         this.O.winData.push('-');
-                                        this.X.showWinner();
+                                        // this.X.showWinner();
+                                        this.X.counter++;
                                         this.X.updateResultStats(document.querySelector('.resultX'),this.X.counter);
                                         
                                          
@@ -185,7 +174,8 @@ class Game {
                              
                                         this.O.winData.push('OK');
                                         this.X.winData.push('-');
-                                        this.O.showWinner();
+                                        // this.O.showWinner();
+                                        this.O.counter++;
                                         this.O.updateResultStats(document.querySelector('.resultO'),this.O.counter);
                                         
                                     }
@@ -389,8 +379,8 @@ class Game {
                     this.clickedAreaHistory = [];
                     objectX.winData = [];
                     objectO.winData = [];
-                    objectX.winnerTable = [];
-                    objectO.winnerTable = [];
+                    // objectX.winnerTable = [];
+                    // objectO.winnerTable = [];
                     document.querySelector('.resultX').textContent = "0"
                     document.querySelector('.resultO').textContent = "0"
                     document.querySelector('.resultD').textContent = "0"
