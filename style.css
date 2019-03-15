@@ -121,13 +121,14 @@ button:nth-child(2){
 
 .win{
     position: absolute;
-    top:50%;
+    top: -50%;
     left: 50%;
     transform: translate(-50%,-50%);
     /* border: 1px solid #F8B500;   */
     background-color: #2E94B5;
-    width: 0vw;
-    height: 0vh;
+    /*  */
+    width: 70vw;
+    height: 40vh;
     font-size: 5vw;
     font-family: 'Rosarivo', Arial, sans-serif;
     text-align: center;
@@ -143,12 +144,13 @@ button:nth-child(2){
     top:50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    font-size: 0;
+    font-size: 5vw;
     transition: 1s;
 }
 
 .win button{
-    display: none;
+    /*  */
+    display: block;
     position: absolute;
     top: 90%;
     transform: translate(-50%,-50%);
