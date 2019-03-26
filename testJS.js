@@ -22,8 +22,8 @@ class GameRules{
     constructor(gameRounds){
         this.round = 0;
         this.gameRounds = gameRounds;
-        this.clickedAreaHistory = []; // private
-        this.putCross = true; // pierowtnie check //private
+        this.clickedAreaHistory = []; 
+        this.putCross = true; 
     }
 
     winRule(object) { 
@@ -108,12 +108,12 @@ class Actualisation{
     }
 
     showPlayground(displayContainer,positionY,displayTable) {
-        document.querySelector('.container').style.display = displayContainer      // block';
-        document.querySelector('.gameOptions').style.top =  positionY              //'-20%';
-        document.querySelector('.tableResults').style.display =  displayTable      //'flex';
+        document.querySelector('.container').style.display = displayContainer    
+        document.querySelector('.gameOptions').style.top =  positionY              
+        document.querySelector('.tableResults').style.display =  displayTable      
     }
 
-    updateResultStats(element, counter) { // aktualizacja wyników danej partii
+    updateResultStats(element, counter) { 
         element.textContent = counter;
     }
 
@@ -206,11 +206,11 @@ class RestartGame {
         }
     }   
     restartAllFrontData() {
-             document.querySelector('.win').style.top = '-50%';
+            document.querySelector('.win').style.top = '-50%';
             document.querySelector('.resultX').textContent = "0"; 
             document.querySelector('.resultO').textContent = "0"; 
             document.querySelector('.resultD').textContent = "0"; 
-            document.querySelectorAll('.tableResults .resultOfOneGame').forEach((gameSigns) => { // CZYŚCI POLE GRY
+            document.querySelectorAll('.tableResults .resultOfOneGame').forEach((gameSigns) => { // clear Playground
                 gameSigns.parentNode.removeChild(gameSigns);
             })
     }
@@ -229,7 +229,7 @@ class Mediator{
         this.mainMenu = document.querySelectorAll('button');
         this.startGame(this.mainMenu)
     }
-        update(objectRules,X,O,draw){
+        updateStats(objectRules,X,O,draw){
             const winnerBanner = document.querySelector('.win');
             objectRules.round++;
             
@@ -242,7 +242,7 @@ class Mediator{
             }
                 
         }
-        render(objectWin,objectLose,objectDraw,draw){
+        addStatData(objectWin,objectLose,objectDraw,draw){
             if(!draw){
                 objectWin.winData.push('OK'); //win
                 objectLose.winData.push('-');  //lose
@@ -252,34 +252,36 @@ class Mediator{
                 objectWin.counter++;  // win
                 this.updateData.updateResultStats(document.querySelector(`.result${objectWin.characteristicSymbol}`), objectWin.counter); // win
             }
-        renderONE(X,O,D,draw){
+        add(X,O,D,draw){
             if(this.rules.winRule(X) == 'Win' || this.rules.winRule(O) == 'Win'){
                     draw = false;
                 if(this.rules.winRule(X) == 'Win'){
-                    this.render(X,O,D,draw);
+                    this.addStatData(X,O,D,draw);
                 } else if(this.rules.winRule(O) == 'Win'){
-                    this.render(O,X,D,draw);
+                    this.addStatData(O,X,D,draw);
                 } 
-                this.update(this.rules ,X, O, draw);
+                this.updateStats(this.rules ,X, O, draw);
                 
             }
             else if(draw){
-                this.render(X,O,D,draw,this.rules)
-                this.update(this.rules,X, O, draw);
+                this.addStatData(X,O,D,draw,this.rules)
+                this.updateStats(this.rules,X, O, draw);
             }
             
         }
         nineAreasAreFull(){
+            
             this.updateData.showPlayground('block','-20%','flex');
-
             this.singleGameArea.forEach(element=>{
-                
                 element.addEventListener('click',(e)=>{
+                    console.log(event.target);
+                    
                     this.rules.putXorO(this.X.character[0].class1,this.X.character[0].class2,this.X.character[0].color,this.O.character[1].class1, this.O.character[1].class2, this.O.character[1].color,this.X,this.O,this.D);
+                    
                     if(this.rules.clickedAreaHistory.length === 9){
-                         this.renderONE(this.X,this.O,this.D,true);
+                         this.addData(this.X,this.O,this.D,true);
                     } else if(this.rules.clickedAreaHistory.length >= 3){
-                        this.renderONE(this.X,this.O,this.D,false)
+                        this.addData(this.X,this.O,this.D,false)
                     }
                 })
             })
@@ -290,9 +292,10 @@ class Mediator{
             }
         }
         startGame(menuButtons){
-            window.addEventListener('load', this.updateData.showGamePanel('50%','1.5s')); // remove listener
+            window.addEventListener('load', this.updateData.showGamePanel('50%','1.5s')); 
             menuButtons.forEach(option=>{
                 option.addEventListener('click',this.choseGame.bind(this));
+
             })
         }
 }
