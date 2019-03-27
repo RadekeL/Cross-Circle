@@ -1,3 +1,7 @@
+// OBCZAJ ES LINTER
+
+import './style.css';
+
 class gameObjects {
     constructor(characteristicSymbol){
         this.characteristicSymbol = characteristicSymbol;
@@ -252,7 +256,7 @@ class Mediator{
                 objectWin.counter++;  // win
                 this.updateData.updateResultStats(document.querySelector(`.result${objectWin.characteristicSymbol}`), objectWin.counter); // win
             }
-        add(X,O,D,draw){
+        addData(X,O,D,draw){
             if(this.rules.winRule(X) == 'Win' || this.rules.winRule(O) == 'Win'){
                     draw = false;
                 if(this.rules.winRule(X) == 'Win'){
