@@ -1,2 +1,5 @@
 /PHOTOS
 /node_modules
+.eslintrc.js
+*.jpg
+Thumbs.db
