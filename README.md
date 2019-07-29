@@ -4,4 +4,5 @@ My first game created by me. Currently, there is a version that allows two peopl
 
 This project includes technologies such as:
 
-Webpack,
+   - Webpack,
+   - Git
